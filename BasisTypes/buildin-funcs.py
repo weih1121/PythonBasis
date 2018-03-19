@@ -50,5 +50,5 @@ The behavior of round() for floats can be surprising: for example,
   Issues and Limitations for more information.
 '''
 
-sqrtx = -16
+sqrtx = 16
 print(sqrt(sqrtx))  #返回sqrtx的平方根
