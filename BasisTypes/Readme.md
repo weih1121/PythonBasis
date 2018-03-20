@@ -1,1 +1,1 @@
-本文简介python中的基础的数据类型，主要包含number， string, bytes, bool.
+本文简介python中的基础的数据类型，主要包含number，string, bytes, bool.
