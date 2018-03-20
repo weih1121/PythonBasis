@@ -50,37 +50,37 @@ print("{0[0]}, this is {0[1]}".format(li))  #使用下标参数
 'startswith', 'strip', 'swapcase', 'title', 'translate', 'upper', 'zfill']
 '''
 
-# 小写 
-S.lower() 
-# 大写 
-S.upper() 
-#大小写互换 
-S.swapcase() 
-# 首字母大写 
-S.capitalize() 
+# # 小写 
+# S.lower() 
+# # 大写 
+# S.upper() 
+# #大小写互换 
+# S.swapcase() 
+# # 首字母大写 
+# S.capitalize() 
 
-# 输出width个字符，S左对齐，不足部分用fillchar填充，默认的为空格。 
-S.ljust(width,[fillchar]) 
-# 右对齐 
-S.rjust(width,[fillchar]) 
-# 中间对齐 
-S.center(width, [fillchar]) 
+# # 输出width个字符，S左对齐，不足部分用fillchar填充，默认的为空格。 
+# S.ljust(width,[fillchar]) 
+# # 右对齐 
+# S.rjust(width,[fillchar]) 
+# # 中间对齐 
+# S.center(width, [fillchar]) 
 
-# 返回S中出现substr的第一个字母的标号，如果S中没有substr则返回-1。start和end作用就相当于在S[start:end]中搜索 
-S.find(substr, [start, [end]]) 
-# 返回S中最后出现的substr的第一个字母的标号，如果S中没有substr则返回-1，也就是说从右边算起的第一次出现的substr的首字母标号 
-S.rfind(substr, [start, [end]]) 
-# 计算substr在S中出现的次数 
-S.count(substr, [start, [end]]) 
-#把S中的oldstar替换为newstr，count为替换次数
-S.replace(oldstr, newstr, [count]) 
+# # 返回S中出现substr的第一个字母的标号，如果S中没有substr则返回-1。start和end作用就相当于在S[start:end]中搜索 
+# S.find(substr, [start, [end]]) 
+# # 返回S中最后出现的substr的第一个字母的标号，如果S中没有substr则返回-1，也就是说从右边算起的第一次出现的substr的首字母标号 
+# S.rfind(substr, [start, [end]]) 
+# # 计算substr在S中出现的次数 
+# S.count(substr, [start, [end]]) 
+# #把S中的oldstar替换为newstr，count为替换次数
+# S.replace(oldstr, newstr, [count]) 
 
-# 把S中前后chars中有的字符全部去掉，可以理解为把S前后chars替换为None 
-S.strip([chars]) 
-S.lstrip([chars]) 
-S.rstrip([chars]) 
+# # 把S中前后chars中有的字符全部去掉，可以理解为把S前后chars替换为None 
+# S.strip([chars]) 
+# S.lstrip([chars]) 
+# S.rstrip([chars]) 
 
-# 以sep为分隔符，把S分成一个list。maxsplit表示分割的次数。默认的分割符为空白字符 
-S.split([sep, [maxsplit]]) 
-# 把seq代表的字符串序列，用S连接起来 
-S.join(seq)
+# # 以sep为分隔符，把S分成一个list。maxsplit表示分割的次数。默认的分割符为空白字符 
+# S.split([sep, [maxsplit]]) 
+# # 把seq代表的字符串序列，用S连接起来 
+# S.join(seq)
