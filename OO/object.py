@@ -4,18 +4,17 @@ class bat:
     def setName(self, name):
         self.name = name
     def act(self):
-        print('a')
+        print('蝙蝠跳舞了！')
 #__init__(self)构造函数，类被实例化的时候自动调用
 #公有和私有 私有使用双下划线
 
-#类实例化最先调用的函数是__new(cls[,...])       注意:不一样的东西！！！  
+#类实例化最先调用的函数是__new__(cls[,...])       注意:不一样的东西！！！  
 class CapStr(str):                          #CapStr类继承与str
     def __new__(cls, string):
         string = string.upper()
         return str.__new__(cls, string)
 str1 = CapStr("hdgs")
 print(str1)
-
 #__del__(self)析构函数
 
 #既不需要访问实例属性也不需要访问类属性，可以考虑把这个方法封装成一个静态方法
@@ -55,7 +54,7 @@ class Vehicle:
         self.power = power
     
     def run(self):
-        print('开动啦...........')
+        print('开车啦...........')
 
 class Subway(Vehicle):
     def __init__(self, name, speed, load, power, line):
@@ -123,7 +122,7 @@ class Pig(Animal):
     def talk(self):
         print('Say aoao!')
 
-def func(animal):
+def func(animal):                   #多态
     animal.talk()
 
 people = People()
