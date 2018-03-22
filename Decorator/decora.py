@@ -28,7 +28,7 @@ def new_f():
 new_f() #调用new_f()
 
 #第二种方法:
-def new_f1(func):
+def new_f1(func):           #运行时间
     def warpper1():
         s_time1 = time.time()
         func()
@@ -36,13 +36,13 @@ def new_f1(func):
         print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
     return warpper1
 
-@new_f1 #相当于f = new_f1(f1) f()    #若不通过这行代码，可以去掉46 47行代码注释效果一样
+@new_f1 #相当于f = new_f1(f1) f()    #若不通过这行代码，可以去掉45行代码注释效果一样
 def f1():
     print("i am f1")
     time.sleep(2)
 
 #若正常通过new_f1()获得函数的执行时间需做如下操作:
-##f1 = new_f1(f1)        #n = warpper1
+#f1 = new_f1(f1)        #f1 = warpper1
 f1()
 #理解装饰器之前需要理解三句话:
 #1.函数即变量 是一个函数对象，函数也可以作为函数参数或者返回值
@@ -56,3 +56,110 @@ def log(func):
         tmp = func(*args, **kwargs)
         print("after call %s" % func.__name__)
     return wrapper
+
+#若果一个函数需要增加两个或多个功能 使用多重装饰
+
+def log(func):
+    def wrapprt2():
+        print('Time')
+        func()
+    return wrapprt2
+
+@log
+@new_f1
+def f2():
+    print("i am f1")
+    time.sleep(2)
+
+f2()
+
+#多重装饰过程:由里向外装饰
+
+#如果被装饰的函数有返回值 类似于上述的装饰过程将不会有效
+def new_f2(func):           #运行时间
+    def warpper1():
+        s_time1 = time.time()
+        func()
+        e_time1 = time.time()
+        print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
+    return warpper1
+
+@new_f2
+def f3():
+    print('f3')
+    return 'a'
+
+print(f3())     #f3()返回值是None
+
+#而根据装饰器函数的执行过程，在f3()被调用之前，编译器首先记录new_f2(func)，在执行@new_f2时会将warpper1函数返回由f3函数接收，
+# 即于接下来执行f3()时，便进入warpper1()函数体，在函数体内执行被装饰器装饰的f3()只需保存原f3()函数的返回值并在最终return
+# 便可达到预期效果
+
+def new_f3(func):           
+    def warpper1():
+        s_time1 = time.time()
+        tmp = func()
+        e_time1 = time.time()
+        print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
+        return tmp
+    return warpper1
+
+@new_f3
+def f4():
+    print('f4')
+    return 'abc'
+
+print(f4())
+
+#如果被装饰器装饰的函数有一个或多个参数那么该如何解决呢？ 做法同上
+def new_f4(func):           
+    def warpper1(x, y):
+        s_time1 = time.time()
+        tmp = func(x, y)
+        e_time1 = time.time()
+        print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
+        return tmp
+    return warpper1
+
+@new_f4
+def f5(x, z):
+    return x
+
+print(f5("iou yuyi gjhgj", 8))
+
+#若不知道被装饰的函数有多少个参数，则使用动态参数
+def new_f5(func):           
+    def warpper1(*args, **kwards):
+        s_time1 = time.time()
+        tmp = func(*args, **kwards)
+        e_time1 = time.time()
+        print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
+        return tmp
+    return warpper1
+
+@new_f4
+def f5(x, z):
+    return x
+
+print(f5("iou yuyi gjhgj", 8))
+
+#这便是完整的装饰器
+
+#更高从层次目标如果需要在new_f5()函数中增添一个打印日志的函数，并且可以根据用户输入打印
+def log(text):
+    def new_f6(func):
+        def warpper(*args, **kwards):
+            s_time = time.time()
+            tmp = func(*args, **kwards)
+            print(text)                                       #打印日志函数
+            e_time = time.time()
+            print("{funct}耗时{time}秒".format(funct = func.__name__, time = (e_time - s_time)))
+            return tmp
+        return warpper
+    return new_f6
+
+@log("qwe")
+def f6(x, y, z):
+    return x, y
+
+print(f6(6, 7, 9))
