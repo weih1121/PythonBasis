@@ -14,7 +14,7 @@ print(MySum(5, 6))  #函数调用
 #有一个功能，要测试一个函数的大概运行时间
 import time
 
-def f():
+def f():                #被测试函数 下列fn()函数原型均基于此
     print("i am f")
     time.sleep(2)
 
@@ -36,8 +36,8 @@ def new_f1(func):           #运行时间
         print("{funcname}耗时 {time}秒" .format(funcname = func.__name__, time = (e_time1 - s_time1)))
     return warpper1
 
-@new_f1 #相当于f = new_f1(f1) f()    #若不通过这行代码，可以去掉45行代码注释效果一样
-def f1():
+@new_f1 #相当于f1 = new_f1(f1) 在f()掉用的时候直接执行warpper1()函数 
+def f1():                      #若不通过上行代码，可以去掉45行代码注释效果一样
     print("i am f1")
     time.sleep(2)
 
