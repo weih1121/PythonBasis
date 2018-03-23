@@ -145,7 +145,7 @@ print(f5("iou yuyi gjhgj", 8))
 
 #这便是完整的装饰器
 
-#更高从层次目标如果需要在new_f5()函数中增添一个打印日志的函数，并且可以根据用户输入打印
+#更高从层次目标如果需要在new_f5()函数中增添一个打印日志的函数，并且可以根据用户输入打印 
 def log(text):
     def new_f6(func):
         def warpper(*args, **kwards):
