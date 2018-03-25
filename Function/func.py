@@ -110,7 +110,7 @@ MyAdd2(6, 6, 7, 7, 7, 8)
 #2 不定长参数
 def MyAdd3(x, y, *args, **kwards):
     print(type(args), end=" ")
-    print(args)
+    print(*args)
     print(type(kwards), end=" ")
     print(kwards)
     return x + y
@@ -125,5 +125,8 @@ def MyAdd4(x, y, z):
 numList = [3, 2, 1]
 print(MyAdd4(*numList))
 
-tp  = 1, 0, 3, 2
-print(type(tp))
+tp  = [1, 0, 3, 2]
+#print(type(tp))
+print(*tp)
+
+

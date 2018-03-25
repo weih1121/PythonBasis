@@ -11,8 +11,8 @@ def add(x, y):
 lambda x, y : x + y
 fun_add = lambda x, y : x + y
 
-print(add(10, 15))
-print(fun_add(10, 15))  #两个函数效果一致
+print('平凡的函数调用结果是: %d' %add(10, 15))
+print('lambda表达式结果: %d' %fun_add(10, 15))  #两个函数效果一致
 
 #作用:
 # 1.Python写执行脚本时，使用lambda可以省下函数的定义过程,代码更简洁

@@ -18,7 +18,7 @@ def f():                #被测试函数 下列fn()函数原型均基于此
     print("i am f")
     time.sleep(2)
 
-#第一种方法 源码改变了 调用方式改变了
+#第一种方法 源码未改变 调用方式改变了
 def new_f():
     s_time = time.time()    #开始时间
     f()
@@ -41,8 +41,8 @@ def f1():                      #若不通过上行代码，可以去掉45行代�
     print("i am f1")
     time.sleep(2)
 
-#若正常通过new_f1()获得函数的执行时间需做如下操作:
-#f1 = new_f1(f1)        #f1 = warpper1
+# #若正常通过new_f1()获得函数的执行时间需做如下操作:
+# #f1 = new_f1(f1)        #f1 = warpper1
 f1()
 #理解装饰器之前需要理解三句话:
 #1.函数即变量 是一个函数对象，函数也可以作为函数参数或者返回值
@@ -55,6 +55,7 @@ def log(func):
         print("begin call %s" % func.__name__)
         tmp = func(*args, **kwargs)
         print("after call %s" % func.__name__)
+        return tmp
     return wrapper
 
 #若果一个函数需要增加两个或多个功能 使用多重装饰
@@ -91,8 +92,9 @@ def f3():
 
 print(f3())     #f3()返回值是None
 
-#而根据装饰器函数的执行过程，在f3()被调用之前，编译器首先记录new_f2(func)，在执行@new_f2时会将warpper1函数返回由f3函数接收，
-# 即于接下来执行f3()时，便进入warpper1()函数体，在函数体内执行被装饰器装饰的f3()只需保存原f3()函数的返回值并在最终return
+# 而根据装饰器函数的执行过程，在f3()被调用之前，编译器首先记录new_f2(func)，
+# 在执行@new_f2时会将warpper1函数返回由f3函数接收，即接下来执行f3()时，
+# 便进入warpper1()函数体，在函数体内执行被装饰器装饰的f3()只需保存原f3()函数的返回值并在最终return
 # 便可达到预期效果
 
 def new_f3(func):           
